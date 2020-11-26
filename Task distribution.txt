@@ -4,7 +4,7 @@ Escape room:
 Youssef:
 
 Feedback sound effect (finishing task)
-Celebration when finishing task x2
+Celebration when opening door
 Angry when failing task
 Interaction with drawers and doors
 Bedroom puzzles
@@ -18,3 +18,12 @@ Character movement animation (idle / walking)
 
 Company/Product Logo: {Hanging on the door}
 Bathroom puzzles
+
+Malak:
+
+Particle effect when task succeeded
+Scene Soundtrack
+Animations: Opening scene, celebration when winning game
+Self-Created Texture: {Painting on the wall}
+Animations: door opening, drawer opening
+Living room puzzles
