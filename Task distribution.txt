@@ -1,0 +1,11 @@
+Escape room:
+3 Rooms with different tasks to finish to escape the building
+
+Youssef:
+
+Feedback sound effect (finishing task)
+Celebration when finishing task x2
+Angry when failing task
+Interaction with drawers and doors
+Bedroom puzzles
+
