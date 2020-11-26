@@ -9,3 +9,13 @@ Angry when failing task
 Interaction with drawers and doors
 Bedroom puzzles
 
+Kashlan:
+
+Import main scene
+Import 3D Character
+Character movement controls
+Character movement animation (idle / walking)
+
+Company/Product Logo: {Hanging on the door}
+Bathroom puzzles
+
