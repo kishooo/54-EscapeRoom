@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private Animator anim;
-    // Start is called before the first frame update
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
-
+    public CharacterController controller;
+    public float  speed = 6f;
+    public float turnSmoothTime = 0.1f;
+    public float turnSmoothVelocity;
+    public Transform cam;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+        if(direction.magnitude >= 0.1f)
         {
-            anim.SetBool("isWalking",true);
-        }
-        else
-        {
-            anim.SetBool("isWalking",false);
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg +cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f,angle,0f);
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f)*Vector3.forward;
+            controller.Move(moveDir.normalized * speed * Time.deltaTime);    
         }
     }
 }
