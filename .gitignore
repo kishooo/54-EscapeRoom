@@ -48,6 +48,15 @@ ExportedObj/
 *.pdb.meta
 *.mdb.meta
 
+
+*/[Ll]ibrary/
+*/[Tt]emp/
+*/[Oo]bj/
+*/[Bb]uild/
+*/[Bb]uilds/
+*/[Ll]ogs/
+*/[Mm]emoryCaptures/
+
 # Unity3D generated file on crash reports
 sysinfo.txt
 
