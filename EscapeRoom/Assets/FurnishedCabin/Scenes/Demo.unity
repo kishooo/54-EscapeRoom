@@ -791,8 +791,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookAt: {fileID: 598107837}
   Player: {fileID: 598107837}
-  distance: 1
-  sensivity: 50
+  distance: 1.5
+  sensivity: 60
 --- !u!1001 &282285660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1454,8 +1454,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb831bc202792e47a9889f8c5999b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1
-  Cam: {fileID: 205709374}
+  controller: {fileID: 598107838}
+  speed: 1
+  turnSmoothTime: 0.1
+  turnSmoothVelocity: 0
+  cam: {fileID: 205709374}
 --- !u!1 &705883886
 GameObject:
   m_ObjectHideFlags: 3
