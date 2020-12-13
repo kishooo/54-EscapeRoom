@@ -11,12 +11,16 @@ public class playerController : MonoBehaviour
     public float turnSmoothVelocity;
     public Transform cam;
 
+
+    public GameObject CodePaneee;
     public int keys = 0;
     bool bInteractionKeyPressed = false;
     void Start()
     {
         keys = 0;
         bInteractionKeyPressed = false;
+
+        CodePaneee.SetActive(false);
     }
 
 
@@ -99,6 +103,16 @@ public class playerController : MonoBehaviour
         
     }
 
+    public void EnableCodePanel()
+    {
+        CodePaneee.SetActive(true);
+    }
+
+    public void DisableCodePanel()
+    {
+        CodePaneee.SetActive(false);
+    }
+
     private void OnTriggerStay(Collider other)
     {
         HideInteractionKey();   
@@ -127,6 +141,14 @@ public class playerController : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 other.gameObject.GetComponent<Animator>().SetBool("Open", true);
+            }
+        }
+
+        if (other.gameObject.CompareTag("Safe1"))
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                EnableCodePanel();
             }
         }
     }
