@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,21 +11,34 @@ public class playerController : MonoBehaviour
     public float turnSmoothVelocity;
     public Transform cam;
 
-    int keys = 0;
-
+    public int keys = 0;
+    bool bInteractionKeyPressed = false;
     void Start()
     {
-
+        keys = 0;
+        bInteractionKeyPressed = false;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-
+        HandleInteraction();
         HandleMovement();
         HandleCheats();
 
+    }
+
+    void HandleInteraction()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            bInteractionKeyPressed = true;
+        }
+        else if(Input.GetKeyUp(KeyCode.E))
+        {
+            bInteractionKeyPressed = false;
+        }
     }
 
     void HandleMovement()
@@ -54,15 +68,65 @@ public class playerController : MonoBehaviour
     public void AddKey()
     {
         keys++;
+
+        if(keys >= 3)
+        {
+            keys = 3;
+        }
     }
 
+    public void RemoveKey()
+    {
+        keys--;
+
+        if(keys<=0)
+        {
+            keys = 0;
+        }
+    }
+
+    void ShowInteractionKey()
+    {
+
+    }
+
+    void HideInteractionKey()
+    {
+
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("ExitDoor"))
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        HideInteractionKey();   
+
+        if (other.gameObject.CompareTag("ExitDoor"))
         {
-            if(keys >= 3)
+            ShowInteractionKey();
+            if (keys >= 3 && Input.GetKey(KeyCode.E))
             {
                 other.gameObject.GetComponent<Animator>().SetBool("OpenDoor", true);
+            }
+        }
+
+        if (other.gameObject.CompareTag("KeyDoor"))
+        {
+            ShowInteractionKey();
+            if (keys >= 1 && Input.GetKey(KeyCode.E))
+            {
+                other.gameObject.GetComponent<Animator>().SetBool("Open", true);
+            }
+        }
+
+        if (other.gameObject.CompareTag("NoKeyDoor"))
+        {
+            ShowInteractionKey();
+            if (Input.GetKey(KeyCode.E))
+            {
+                other.gameObject.GetComponent<Animator>().SetBool("Open", true);
             }
         }
     }
