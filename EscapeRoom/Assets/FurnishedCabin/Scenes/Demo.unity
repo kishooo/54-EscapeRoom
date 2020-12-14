@@ -23483,8 +23483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ae88699167da04891d3ce7622de69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: {fileID: 0}
-  animator: {fileID: 0}
+  dialogueText: {fileID: 1125095981}
+  animator: {fileID: 1125095983}
 --- !u!4 &1634546038
 Transform:
   m_ObjectHideFlags: 0
