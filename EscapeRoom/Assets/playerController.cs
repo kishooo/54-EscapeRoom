@@ -14,12 +14,14 @@ public class playerController : MonoBehaviour
 
     public GameObject CodePaneee;
     public int keys = 0;
+    bool bCelebrateAnim = false;
     bool bInteractionKeyPressed = false;
+    float TimeToStopAnim = 0;
     void Start()
     {
         keys = 0;
         bInteractionKeyPressed = false;
-
+        bCelebrateAnim = false;
         CodePaneee.SetActive(false);
     }
 
@@ -30,7 +32,20 @@ public class playerController : MonoBehaviour
         HandleInteraction();
         HandleMovement();
         HandleCheats();
+        
 
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            PlayTaskCelebrationAnimation();
+        }
+
+        // Stopping celebration animation
+        TimeToStopAnim += Time.deltaTime;
+        if(TimeToStopAnim >= 1.0f)
+        {
+            StopCelebrating();
+            TimeToStopAnim = 0;
+        }
     }
 
     void HandleInteraction()
@@ -132,6 +147,12 @@ public class playerController : MonoBehaviour
             if (keys >= 1 && Input.GetKey(KeyCode.E))
             {
                 other.gameObject.GetComponent<Animator>().SetBool("Open", true);
+                RemoveKey();
+                PlayTaskCelebrationAnimation();
+            }
+            if(keys == 0)
+            {
+                //PlayAngryAnimation();
             }
         }
 
@@ -152,4 +173,23 @@ public class playerController : MonoBehaviour
             }
         }
     }
+
+    public void PlayTaskCelebrationAnimation()
+    {
+
+        GetComponentInChildren<Animator>().SetBool("TaskCelebrate", true);
+        GameObject SuccessSFXMgr = GameObject.FindWithTag("SuccessSFXManager");
+        SuccessSFXMgr.GetComponent<AudioSource>().Play();
+
+        bCelebrateAnim = false;
+    }
+
+    void StopCelebrating()
+    {
+        GetComponentInChildren<Animator>().SetBool("TaskCelebrate", false);
+    }
+  //  public void PlayAngryAnimation()
+  //  {
+  //      GetComponentInChildren<Animator>().SetBool("TaskAngry", true);
+  //  }
 }
