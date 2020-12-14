@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FurnishedCabin/Scenes/Demo.unity
     guid: 0bce5907d797a4cd8b0660dc119867e8
+  - enabled: 1
+    path: Assets/FurnishedCabin/Scenes/credits.unity
+    guid: c8ecb80b38308ff439fdda1d38771559
+  - enabled: 1
+    path: Assets/FurnishedCabin/Scenes/HowToPlay.unity
+    guid: 9dec0d8a449a029498d7ccd272fe0af0
+  - enabled: 1
+    path: Assets/FurnishedCabin/Scenes/option.unity
+    guid: 49cbd572c29eeae4b8f8cf3a2488f7b6
+  - enabled: 1
+    path: Assets/FurnishedCabin/Scenes/SampleScene.unity
+    guid: 743199d76fae6584fb013bc7dc707dbe
   m_configObjects: {}
