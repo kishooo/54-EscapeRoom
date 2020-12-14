@@ -13,12 +13,13 @@ public class DialogueManager : MonoBehaviour
     {
         sentances = new Queue<string>();
         animator.SetBool("isOpen", true);
-        //animator.SetBool("CloseFirst", false);
+
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
         animator.SetBool("isOpen", true);
+
         //animator.SetBool("CloseFirst", true);
         //Debug.Log("First Sentance" + dialogue.name);
         sentances.Clear();
@@ -44,6 +45,7 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         animator.SetBool("isOpen", false);
+
         //Debug.Log("the End");
     }
 }
