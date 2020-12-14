@@ -14,14 +14,12 @@ public class playerController : MonoBehaviour
 
     public GameObject CodePaneee;
     public int keys = 0;
-    bool bCelebrateAnim = false;
-    bool bInteractionKeyPressed = false;
+
+    // Celebration
     float TimeToStopAnim = 0;
     void Start()
     {
         keys = 0;
-        bInteractionKeyPressed = false;
-        bCelebrateAnim = false;
         CodePaneee.SetActive(false);
     }
 
@@ -29,35 +27,14 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleInteraction();
         HandleMovement();
         HandleCheats();
         
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            PlayTaskCelebrationAnimation();
-        }
+       
 
         // Stopping celebration animation
         TimeToStopAnim += Time.deltaTime;
-        if(TimeToStopAnim >= 1.0f)
-        {
-            StopCelebrating();
-            TimeToStopAnim = 0;
-        }
-    }
-
-    void HandleInteraction()
-    {
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            bInteractionKeyPressed = true;
-        }
-        else if(Input.GetKeyUp(KeyCode.E))
-        {
-            bInteractionKeyPressed = false;
-        }
     }
 
     void HandleMovement()
@@ -81,6 +58,11 @@ public class playerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.K))
         {
             AddKey();
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            PlayTaskCelebrationAnimation();
         }
     }
 
@@ -149,10 +131,12 @@ public class playerController : MonoBehaviour
                 other.gameObject.GetComponent<Animator>().SetBool("Open", true);
                 RemoveKey();
                 PlayTaskCelebrationAnimation();
+                TimeToStopAnim = 0;
             }
-            if(keys == 0)
+            if(keys == 0 && Input.GetKey(KeyCode.E))
             {
-                //PlayAngryAnimation();
+                if(TimeToStopAnim>0.5)
+                  PlayAngryAnimation();
             }
         }
 
@@ -176,20 +160,12 @@ public class playerController : MonoBehaviour
 
     public void PlayTaskCelebrationAnimation()
     {
-
-        GetComponentInChildren<Animator>().SetBool("TaskCelebrate", true);
+        GetComponentInChildren<Animator>().SetTrigger("CelebrateTask");
         GameObject SuccessSFXMgr = GameObject.FindWithTag("SuccessSFXManager");
         SuccessSFXMgr.GetComponent<AudioSource>().Play();
-
-        bCelebrateAnim = false;
     }
-
-    void StopCelebrating()
+    public void PlayAngryAnimation()
     {
-        GetComponentInChildren<Animator>().SetBool("TaskCelebrate", false);
+        GetComponentInChildren<Animator>().SetTrigger("AngryTask");
     }
-  //  public void PlayAngryAnimation()
-  //  {
-  //      GetComponentInChildren<Animator>().SetBool("TaskAngry", true);
-  //  }
 }
