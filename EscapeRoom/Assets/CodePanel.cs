@@ -29,6 +29,10 @@ public class CodePanel : MonoBehaviour
 
             inputField.text = "";
             bFourTwentyCodeDone = true;
+
+            // Play sound
+            GameObject SuccessSFXMgr = GameObject.FindWithTag("SuccessSFXManager");
+            SuccessSFXMgr.GetComponent<AudioSource>().Play();
         }
     }
 

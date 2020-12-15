@@ -31,7 +31,10 @@ public class playerController : MonoBehaviour
         HandleCheats();
         
 
-       
+       if(Input.GetKeyDown(KeyCode.T))
+        {
+            DisableCodePanel();
+        }
 
         // Stopping celebration animation
         TimeToStopAnim += Time.deltaTime;
