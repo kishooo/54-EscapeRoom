@@ -12,23 +12,29 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         sentances = new Queue<string>();
-        animator.SetBool("isOpen", true);
+        if (playerController.DoorFlag == true)
+        {
+            animator.SetBool("open", true);
+        }
         //animator.SetBool("CloseFirst", false);
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
-        animator.SetBool("isOpen", true);
-        //animator.SetBool("CloseFirst", true);
-        //Debug.Log("First Sentance" + dialogue.name);
-        sentances.Clear();
-
-        foreach(string sentance in dialogue.sentances)
+        if (playerController.DoorFlag == true)
         {
-            sentances.Enqueue(sentance);
-        }
+            animator.SetBool("open", true);
+            //animator.SetBool("CloseFirst", true);
+            //Debug.Log("First Sentance" + dialogue.name);
+            sentances.Clear();
 
-        DisplayNextSentance();
+            foreach (string sentance in dialogue.sentances)
+            {
+                sentances.Enqueue(sentance);
+            }
+
+            DisplayNextSentance();
+        }
     }
     public void DisplayNextSentance()
     {
@@ -43,7 +49,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void EndDialogue()
     {
-        animator.SetBool("isOpen", false);
+        animator.SetBool("open", false);
         //Debug.Log("the End");
     }
 }

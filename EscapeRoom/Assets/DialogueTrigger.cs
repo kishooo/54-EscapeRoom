@@ -5,7 +5,7 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
-
+    public Animator animator;
     public void TriggerDialogue()
     {
         
@@ -13,14 +13,19 @@ public class DialogueTrigger : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (playerController.DoorFlag == true)
         {
-            FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+            animator.SetBool("open", true);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                FindObjectOfType<DialogueManager>().DisplayNextSentance();
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            FindObjectOfType<DialogueManager>().DisplayNextSentance();
-        }
+        
         
     }
 }

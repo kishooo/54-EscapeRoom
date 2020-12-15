@@ -4745,6 +4745,7 @@ MonoBehaviour:
       One digit is right but in the wrong place\r\n206: Two digits are right but
       both are in the wrong place\r\n738: All digits are wrong\r\n380: One digit
       is right but in the wrong placessssss"
+  animator: {fileID: 1125095983}
 --- !u!1 &1136096976
 GameObject:
   m_ObjectHideFlags: 0
@@ -5585,8 +5586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ae88699167da04891d3ce7622de69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: {fileID: 0}
-  animator: {fileID: 0}
+  dialogueText: {fileID: 1125095981}
+  animator: {fileID: 1125095983}
 --- !u!4 &1634546038
 Transform:
   m_ObjectHideFlags: 0

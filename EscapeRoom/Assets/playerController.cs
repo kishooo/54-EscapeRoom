@@ -10,6 +10,7 @@ public class playerController : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     public float turnSmoothVelocity;
     public Transform cam;
+    public static bool DoorFlag = false;
 
 
     public GameObject CodePaneee;
@@ -135,6 +136,7 @@ public class playerController : MonoBehaviour
                 RemoveKey();
                 PlayTaskCelebrationAnimation();
                 TimeToStopAnim = 0;
+                DoorFlag = true;
             }
             if(keys == 0 && Input.GetKey(KeyCode.E))
             {
