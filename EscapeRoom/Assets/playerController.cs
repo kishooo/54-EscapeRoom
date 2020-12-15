@@ -11,6 +11,7 @@ public class playerController : MonoBehaviour
     public float turnSmoothVelocity;
     public Transform cam;
     public static bool DoorFlag = false;
+    public static bool secDoorFlag = false;
 
 
     public GameObject CodePaneee;
@@ -45,6 +46,7 @@ public class playerController : MonoBehaviour
        if(Input.GetKeyDown(KeyCode.T))
        {
             DisableCodePanel();
+            DisableCodePanel2();
        }
 
         // Stopping celebration animation
@@ -183,6 +185,8 @@ public class playerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("SecondDoor"))
         {
+            secDoorFlag = true;
+            Debug.Log("door opened");
             if (Input.GetKey(KeyCode.E))
             {
                 EnableCodePanel2();
