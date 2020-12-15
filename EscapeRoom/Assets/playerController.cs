@@ -17,6 +17,8 @@ public class playerController : MonoBehaviour
     public GameObject CodePanel2;
     public int keys = 0;
 
+    float OriginalYPos;
+
     // Celebration
     float TimeToStopAnim = 0;
     void Start()
@@ -24,6 +26,8 @@ public class playerController : MonoBehaviour
         keys = 0;
         CodePaneee.SetActive(false);
         CodePanel2.SetActive(false);
+
+        OriginalYPos = transform.position.y;
     }
 
 
@@ -33,6 +37,10 @@ public class playerController : MonoBehaviour
         HandleMovement();
         HandleCheats();
         
+        if(transform.position.y >= OriginalYPos+0.5f)
+        {
+            transform.position = new Vector3(transform.position.x, OriginalYPos, transform.position.z);
+        }
 
        if(Input.GetKeyDown(KeyCode.T))
        {
