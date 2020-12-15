@@ -9,6 +9,7 @@ TagManager:
   - KeyDoor
   - Safe1
   - SuccessSFXManager
+  - SecondDoor
   layers:
   - Default
   - TransparentFX

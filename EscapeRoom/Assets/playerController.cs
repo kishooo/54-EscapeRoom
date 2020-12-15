@@ -14,6 +14,7 @@ public class playerController : MonoBehaviour
 
 
     public GameObject CodePaneee;
+    public GameObject CodePanel2;
     public int keys = 0;
 
     // Celebration
@@ -22,6 +23,7 @@ public class playerController : MonoBehaviour
     {
         keys = 0;
         CodePaneee.SetActive(false);
+        CodePanel2.SetActive(false);
     }
 
 
@@ -33,9 +35,9 @@ public class playerController : MonoBehaviour
         
 
        if(Input.GetKeyDown(KeyCode.T))
-        {
+       {
             DisableCodePanel();
-        }
+       }
 
         // Stopping celebration animation
         TimeToStopAnim += Time.deltaTime;
@@ -109,9 +111,19 @@ public class playerController : MonoBehaviour
         CodePaneee.SetActive(true);
     }
 
+    public void EnableCodePanel2()
+    {
+        CodePanel2.SetActive(true);
+    }
+
     public void DisableCodePanel()
     {
         CodePaneee.SetActive(false);
+    }
+
+    public void DisableCodePanel2()
+    {
+        CodePanel2.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
@@ -159,6 +171,13 @@ public class playerController : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 EnableCodePanel();
+            }
+        }
+        if (other.gameObject.CompareTag("SecondDoor"))
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                EnableCodePanel2();
             }
         }
     }
