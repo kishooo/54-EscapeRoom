@@ -12,6 +12,10 @@ public class playerController : MonoBehaviour
     public Transform cam;
     public static bool DoorFlag = false;
     public static bool secDoorFlag = false;
+    public GameObject selfTable;
+    public GameObject riddle1;
+    public GameObject riddle2;
+    public GameObject riddle3;
 
 
     public GameObject CodePaneee;
@@ -68,7 +72,10 @@ public class playerController : MonoBehaviour
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
     }
-
+    public void rightAnswer()
+    {
+        AddKey();
+    }
     void HandleCheats()
     {
         if(Input.GetKeyDown(KeyCode.K))
