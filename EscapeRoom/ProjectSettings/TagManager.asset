@@ -10,6 +10,8 @@ TagManager:
   - Safe1
   - SuccessSFXManager
   - SecondDoor
+  - bath
+  - Table
   layers:
   - Default
   - TransparentFX

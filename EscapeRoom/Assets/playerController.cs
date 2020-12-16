@@ -14,8 +14,9 @@ public class playerController : MonoBehaviour
     public static bool secDoorFlag = false;
     public GameObject selfTable;
     public GameObject riddle1;
-    public GameObject riddle2;
-    public GameObject riddle3;
+    public GameObject pressE;
+    public AudioSource audio;
+    public AudioClip intense;
 
 
     public GameObject CodePaneee;
@@ -31,6 +32,7 @@ public class playerController : MonoBehaviour
         keys = 0;
         CodePaneee.SetActive(false);
         CodePanel2.SetActive(false);
+        audio.Play();
 
         OriginalYPos = transform.position.y;
     }
@@ -39,9 +41,12 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (done){
+            pressE.SetActive(false);
+        }
         HandleMovement();
         HandleCheats();
-        
+
         if(transform.position.y >= OriginalYPos+0.5f)
         {
             transform.position = new Vector3(transform.position.x, OriginalYPos, transform.position.z);
@@ -118,10 +123,7 @@ public class playerController : MonoBehaviour
     {
 
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
+   
     
     public void EnableCodePanel()
     {
@@ -143,16 +145,51 @@ public class playerController : MonoBehaviour
         CodePanel2.SetActive(false);
     }
 
+    public void doorFlagTrue(){
+        DoorFlag = true;
+    }
+    public void playSound(){
+        GameObject SuccessSFXMgr = GameObject.FindWithTag("SuccessSFXManager");
+        SuccessSFXMgr.GetComponent<AudioSource>().Play();
+    }
+    bool done=false;
+    public void taskDone(){
+        done =true;
+    }
+
+    
     private void OnTriggerStay(Collider other)
     {
         HideInteractionKey();   
-
+        if (other.gameObject.CompareTag("Table")){
+            Debug.Log("triggeredd");
+            pressE.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E)){
+                if (!done){
+                    pressE.SetActive(false);
+                    riddle1.SetActive(true);
+                    done=true;
+                }
+            }
+        }
+        if (other.gameObject.CompareTag("bath") )
+        {
+           if (keys>=1 && Input.GetKey(KeyCode.E)){
+                other.gameObject.GetComponent<Animator>().SetBool("openbath", true);
+                DoorFlag=true;
+                playSound();
+                PlayTaskCelebrationAnimation();
+           }
+        }
         if (other.gameObject.CompareTag("ExitDoor"))
         {
             ShowInteractionKey();
-            if (keys >= 3 && Input.GetKey(KeyCode.E))
+            if (keys >= 2 && Input.GetKey(KeyCode.E))
             {
                 other.gameObject.GetComponent<Animator>().SetBool("OpenDoor", true);
+                playSound();
+                GetComponentInChildren<Animator>().SetBool("finish", true);
+
             }
         }
 
@@ -165,7 +202,7 @@ public class playerController : MonoBehaviour
                 RemoveKey();
                 PlayTaskCelebrationAnimation();
                 TimeToStopAnim = 0;
-                DoorFlag = true;
+                //DoorFlag = true;
             }
             if(keys == 0 && Input.GetKey(KeyCode.E))
             {
