@@ -183,7 +183,7 @@ public class playerController : MonoBehaviour
                 EnableCodePanel();
             }
         }
-        if (other.gameObject.CompareTag("SecondDoor"))
+        if (other.gameObject.CompareTag("SecondDoor") && secDoorFlag == false)
         {
             
             //Debug.Log("door opened");

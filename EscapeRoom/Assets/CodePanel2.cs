@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CodePanel2 : MonoBehaviour
 {
-
+    public static bool solved = false;
     public GameObject player;
     public InputField inputField;
     public GameObject Dialogue;
@@ -22,6 +22,7 @@ public class CodePanel2 : MonoBehaviour
     {
         if (!bFourTwentyCodeDone && inputField.text == "042")
         {
+            solved = true;
             GameObject secondDoor = GameObject.FindWithTag("SecondDoor");
             //Safe1.GetComponent<Animator>().SetBool("Open", true);
 
