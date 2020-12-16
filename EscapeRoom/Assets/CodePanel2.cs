@@ -8,6 +8,7 @@ public class CodePanel2 : MonoBehaviour
 
     public GameObject player;
     public InputField inputField;
+    public GameObject Dialogue;
 
     bool bFourTwentyCodeDone = false;
     // Start is called before the first frame update
@@ -26,6 +27,13 @@ public class CodePanel2 : MonoBehaviour
 
             player.GetComponent<playerController>().DisableCodePanel2();
             player.GetComponent<playerController>().AddKey();
+            playerController.secDoorFlag = true;
+            Debug.Log("door opened");
+            player.GetComponent<playerController>().PlayTaskCelebrationAnimation();
+            player.GetComponent<playerController>().DisableCodePanel2();
+            playerController.DoorFlag = false;
+            Dialogue.GetComponent<DialogueManager>().EndDialogue();
+            //playerController.PlayTaskCelebrationAnimation();
 
             inputField.text = "";
             bFourTwentyCodeDone = true;

@@ -115,7 +115,7 @@ public class playerController : MonoBehaviour
     {
         
     }
-
+    
     public void EnableCodePanel()
     {
         CodePaneee.SetActive(true);
@@ -185,8 +185,8 @@ public class playerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("SecondDoor"))
         {
-            secDoorFlag = true;
-            Debug.Log("door opened");
+            
+            //Debug.Log("door opened");
             if (Input.GetKey(KeyCode.E))
             {
                 EnableCodePanel2();

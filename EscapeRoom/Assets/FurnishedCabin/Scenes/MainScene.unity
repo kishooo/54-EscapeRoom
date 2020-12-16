@@ -5857,6 +5857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 598107836}
   inputField: {fileID: 1015390551}
+  Dialogue: {fileID: 1634546036}
 --- !u!1 &1524741413
 GameObject:
   m_ObjectHideFlags: 0
